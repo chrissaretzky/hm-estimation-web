@@ -1,0 +1,93 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<!-- Header - set the background image for the header in the line below-->
+<header class="py-5 bg-image-full" style="background-image: url({% static '/assets/banner.jpg' %})">
+    <div class="text-left my-5 ps-5 bg-gradient-transparent">
+        <h1 class="fs-3 quote text-black-80">Quote Page</h1>
+        <p class="text-black mb-0">Landing Page Template</p>
+    </div>
+</header>
+
+<!-- Content section-->
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                {{ message }}
+                <form action = "" method = "post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h4>Your Information</h4>
+                    <div class="row py-2">
+                        <div class="col">
+                            {{ form.estimator_id|add_class:"form-control"|attr:"placeholder=Estimator-ID" }}
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col">
+                            {{ form.first_name|add_class:"form-control"|attr:"placeholder=First-Name" }}
+                        </div>
+                        <div class="col">
+                            {{ form.last_name|add_class:"form-control"|attr:"placeholder=Last-Name" }}
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col">
+                            {{ form.email|add_class:"form-control"|attr:"placeholder=Email-someone@example.com" }}
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                    </div>
+                    <h4>Claim Information</h4>
+                    <div class="row py-2">
+                        <div class="col-6">
+                            {{ form.claim_num|add_class:"form-control"|attr:"placeholder=Claim-Number" }}
+                        </div>
+                    </div>
+                    <div class="row py-1">
+                        <h6>Vehicle</h6>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-3">
+                            {{ form.year|add_class:"form-control"|attr:"placeholder=Year" }}
+                        </div>
+                        <div class="col-4">
+                            {{ form.make|add_class:"form-control"|attr:"placeholder=Make" }}
+                        </div>
+                        <div class="col-5">
+                            {{ form.model|add_class:"form-control"|attr:"placeholder=Model" }}
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-3 justify-content-center">
+                            <h6>Minimum 10 Images</h6>
+                        </div>
+                        <div class="col-9">
+                            {{ form.images|add_class:"form-control"|append_attr:"multiple" }}
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col">
+                            {{ form.notes|add_label_class:"form-label" }}
+                            {{ form.notes|add_class:"form-control" }}
+                        </div>
+                    </div>                    
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+</footer>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+        {% comment %} <link rel="stylesheet" href="{% static '/css/custom.css' %}"> {% endcomment %}
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        {% include '_navbar.html' %}
+        {% block content %}{% endblock %}
+        {% include '_scripts.html' %}
+    </body>
+</html>

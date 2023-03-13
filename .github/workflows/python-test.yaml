@@ -42,7 +42,6 @@ jobs:
         - name: Make sure Python code is all compilable
           run: |
             python -m compileall azureproject -f
-            python -m compileall restaurant_review -f
         - name: Run Django server
           run: |
             python manage.py migrate

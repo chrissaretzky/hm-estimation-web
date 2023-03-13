@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+
+{% load static %}
+
+
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<!-- Header - set the background image for the header in the line below-->
+<header class="py-5 bg-image-full" style="background-image: url({% static '/assets/banner.jpg' %})">
+    <div class="text-left my-5 ps-5 bg-gradient-transparent">
+        <h1 class="fs-3 quote text-black-80">"About page"</h1>
+        <p class="text-black mb-0">Landing Page Template</p>
+    </div>
+</header>
+
+<!-- Content section-->
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>about information here</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+</footer>
+
+{% endblock %}
