@@ -59,7 +59,7 @@ LOGGING = {
             "level": "DEBUG",
             "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
             "connection_string": os.environ.get("APPLICATIONINSIGHTS_CONNECTION_STRING"),
-            "formatter": "verbose",
+            "formatter": "azure_verbose",
         },
 
     },
