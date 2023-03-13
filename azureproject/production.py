@@ -55,12 +55,6 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "formatter": "simple",
         },
-        "log_to_file": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "formatter": "verbose",
-            "filename": os.path.join(BASE_DIR, "logs", "dev.logs") # same loc as blogproject
-        },
          "log_to_azure_ai": {
             "level": "DEBUG",
             "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
@@ -71,7 +65,7 @@ LOGGING = {
     },
     "loggers": {
         'django': {
-            'handlers': ['stdout', 'log_to_file','log_to_azure_ai'],
+            'handlers': ['stdout','log_to_azure_ai'],
         },
     }
 }
