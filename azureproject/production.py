@@ -2,6 +2,8 @@ import os
 
 from .settings import *  # noqa
 from .settings import BASE_DIR
+from opencensus.trace import config_integration
+
 
 # Configure the domain name using the environment variable
 # that Azure automatically creates for us.
@@ -12,7 +14,6 @@ DEBUG = False
 # WhiteNoise configuration
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # Add whitenoise middleware after the security middleware
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -20,7 +21,60 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
+
+OPENCENSUS = {
+        'TRACE': {
+            'SAMPLER': 'opencensus.trace.samplers.ProbabilitySampler(rate=1)',
+            'EXPORTER': '''opencensus.ext.azure.trace_exporter.AzureExporter(
+                connection_string="InstrumentationKey=c3c23a4b-c32f-47a7-88c8-502138b987a2;IngestionEndpoint=https://centralus-2.in.applicationinsights.azure.com/;LiveEndpoint=https://centralus.livediagnostics.monitor.azure.com/"
+            )''',
+            'EXCLUDELIST_PATHS': [],
+        }
+}
+
+config_integration.trace_integrations(['requests','logging','postgresql'])
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s | %(levelname)s | %(message)s"
+        },
+        "azure_verbose": {
+            "format": "%(asctime)s |  %(name)s | %(levelname)s | [%(funcName)s:%(filename)s:%(lineno)d] |"
+                      " [%(threadName)s:%(process)d] | %(message)s"
+                      "traceID=%(traceId)s spanId=%(spanId)s"
+        },
+    },
+    "handlers": {
+        "stdout": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+        "log_to_file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "verbose",
+            "filename": os.path.join(BASE_DIR, "logs", "dev.logs") # same loc as blogproject
+        },
+         "log_to_azure_ai": {
+            "level": "DEBUG",
+            "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
+            "connection_string": os.environ.get("APPLICATIONINSIGHTS_CONNECTION_STRING"),
+            "formatter": "verbose",
+        },
+
+    },
+    "loggers": {
+        'django': {
+            'handlers': ['stdout', 'log_to_file','log_to_azure_ai'],
+        },
+    }
+}
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

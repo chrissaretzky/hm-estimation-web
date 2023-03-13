@@ -4,3 +4,8 @@ python-dotenv==0.21.1
 whitenoise==6.3.0
 django-widget-tweaks
 Pillow
+opencensus
+opencensus-ext-logging
+opencensus-ext-azure
+opencensus-extension-azure-functions
+opencensus-ext-requests
