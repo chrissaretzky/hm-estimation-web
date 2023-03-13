@@ -9,7 +9,7 @@ from opencensus.trace import config_integration
 # that Azure automatically creates for us.
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME'], '169.254.129.2'] if 'WEBSITE_HOSTNAME' in os.environ else []
 CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
-DEBUG = False
+DEBUG = True
 
 # WhiteNoise configuration
 MIDDLEWARE = [
@@ -45,7 +45,6 @@ LOGGING = {
         "azure_verbose": {
             "format": "%(asctime)s |  %(name)s | %(levelname)s | [%(funcName)s:%(filename)s:%(lineno)d] |"
                       " [%(threadName)s:%(process)d] | %(message)s"
-                      "spanId=%(spanId)s"
         },
     },
     "handlers": {
