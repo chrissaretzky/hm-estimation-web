@@ -21,6 +21,7 @@ MIDDLEWARE = [
     'opencensus.ext.django.middleware.OpencensusMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
 OPENCENSUS = {

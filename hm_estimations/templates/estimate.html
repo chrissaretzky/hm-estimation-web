@@ -10,8 +10,7 @@
 <!-- Header - set the background image for the header in the line below-->
 <header class="py-5 bg-image-full" style="background-image: url({% static '/assets/banner.jpg' %})">
     <div class="text-left my-5 ps-5 bg-gradient-transparent">
-        <h1 class="fs-3 quote text-black-80">Quote Page</h1>
-        <p class="text-black mb-0">Landing Page Template</p>
+        <h1 class="py-4 fs-3 quote text-black-80">"30 Years Expierence Repairing Frames"</h1>
     </div>
 </header>
 
@@ -20,6 +19,8 @@
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
+                <p class="lead">For us to get back to you with the best possible results. Please include your ICBC Estimator ID, the claim number, vehicle information and at least 10 images</p>
+                <p class="lead">Add any additional information you feel we should be aware of in the notes section at the bottom of the form</p>
                 {{ message }}
                 <form action = "" method = "post" enctype="multipart/form-data">
                     {% csrf_token %}
