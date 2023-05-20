@@ -1,4 +1,5 @@
 from django.db import models
+from azureproject.custom_azure import AzureMediaStorage
 
 class CommunicationRequest(models.Model):
     
@@ -26,4 +27,4 @@ class Images(models.Model):
 
     estimate = models.ForeignKey(Estimations, on_delete=models.CASCADE)
     notes = models.TextField()
-    imagefile = models.ImageField(upload_to='images/')
+    imagefile = models.ImageField(upload_to='images')

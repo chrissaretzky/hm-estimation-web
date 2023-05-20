@@ -33,6 +33,7 @@ def estimate_view(request):
                 imagefile = img,
             )
             print(image.imagefile)
+            image.save()
         context['message'] = "Information Sent, We will follow up by email"
     context['form'] = EstimateForm()
     return render(request, "estimate.html", context)

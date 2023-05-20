@@ -142,17 +142,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+AZURE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=hmestimationstorage2;AccountKey=IENaEYdvCLd71AF9uOaA8bNZ5ETGeAHu8BBU0VVHJIVXkuNmOS0Zw1xpiRAdmX9T8xx4kTsipwFF+AStoaIuQw==;BlobEndpoint=https://hmestimationstorage2.blob.core.windows.net/;FileEndpoint=https://hmestimationstorage2.file.core.windows.net/;TableEndpoint=https://hmestimationstorage2.table.core.windows.net/;QueueEndpoint=https://hmestimationstorage2.queue.core.windows.net/"
+AZURE_CUSTOM_DOMAIN = f'hmestimationstorage2.blob.core.windows.net'
+AZURE_CONTAINER = 'static'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
+STATIC_ROOT = str(BASE_DIR.joinpath('static'))
+STATIC_LOCATION = 'static'
+STATIC_URL = f'https://hmestimationstorage2.blob.core.windows.net/{STATIC_LOCATION}/'
+STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
 
-STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
-STATIC_URL = 'static/'
-
-MEDIA_URL = 'media/'
-MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+DEFAULT_FILE_STORAGE = 'azureproject.custom_azure.AzureMediaStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

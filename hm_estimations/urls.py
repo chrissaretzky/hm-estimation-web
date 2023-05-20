@@ -24,5 +24,4 @@ urlpatterns = [
     path('estimate/', estimate_view, name='estimate'),
     path('about/', about_view, name='about'),
     path('contact/', contact_view, name='contact'),
-
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
